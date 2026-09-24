@@ -1,16 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styles: [],
   template: `
-    <h1>Hello, {{ title() }}</h1>
+    <h1>Hello, {{ $title() }}</h1>
 
     <router-outlet />
   `,
+  imports: [RouterOutlet]
 })
 export class App {
-  protected readonly title = signal('y');
+  readonly $data = input({ alias: 'data' });
+
+  readonly $title = signal('y');
 }
